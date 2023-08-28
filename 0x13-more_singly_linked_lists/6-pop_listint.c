@@ -1,25 +1,22 @@
-
-#ifndef _DOG_H_
-p_listint.c6-pop_listint.c
-#define _DOG_H_
+#include "lists.h"
 
 /**
- * struct dog - structure for a basic dog
- * @name: Dog's name
- * @age: Dog's age
- * @owner: Dog's owner
- * Description: data structure for dog
+ * pop_listint - deletes the head node of a linked list
+ * @head: head of the list
+ * Return: the deleted node data
  */
-struct dog
+int pop_listint(listint_t **head)
 {
-	char *name;
-	float age;
-	char *owner;
-};
-typedef struct dog dog_t;
-void init_dog(struct dog *d, char *name, float age, char *owner);
-void print_dog(struct dog *d);
-dog_t *new_dog(char *name, float age, char *owner);
-void free_dog(dog_t *d);
-#endif
-	  
+	listint_t *popped;
+	int content;
+
+	if (*head == NULL)
+		return (0);
+
+	popped = *head;
+	content = popped->n;
+	free(popped);
+
+	*head = (*head)->next;
+	return (content);
+}
